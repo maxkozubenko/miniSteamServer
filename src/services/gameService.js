@@ -22,8 +22,14 @@ const getGamesByTags = async (price, indie, action, adventure) => {
     return games;
 }
 
+const getGame = async (gameName) => {
+    const game = await Game.findOne({name: gameName});
+    return game;
+};
+
 module.exports = {
     addGame,
     getGames,
-    getGamesByTags
+    getGamesByTags,
+    getGame
 }

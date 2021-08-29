@@ -16,6 +16,12 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('tiny'));
 
+app.use(express.static(__dirname + '/dist/MiniSteamCICDApp'));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/MiniSteamCICDApp/indexedDB.html'));
+});
+
 app.use('/api/auth', authRouter);
 app.use('/api', [authMiddleware], gamesController);
 app.use('/api', [authMiddleware], userController);

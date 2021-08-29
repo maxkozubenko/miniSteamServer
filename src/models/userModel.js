@@ -17,9 +17,15 @@ const User = mongoose.model('User', {
     },
     games: [{
         name: String,
+        price: Number,
+        description: String,
+        img: String,
+        genre: String
     }],
     friends: [{
+        email: String,
         nickname: String,
+        status: String,
     }],
 });
 

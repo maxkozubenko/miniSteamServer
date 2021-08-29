@@ -5,12 +5,30 @@ const {
     addGame,
     getGames,
     getGamesByTags,
+    getGame,
 } = require('../services/gameService');
 
 router.get('/games', async (req, res) => {
     try {
         const games = await getGames();
         res.json(games);
+    } catch (err) {
+        res.status(400).json({message: 'Error'});
+    }
+});
+
+router.get('/game/get', async (req, res) => {
+    const {
+        gameName
+    } = req.query;
+
+    try {
+        const game = await getGame(gameName);
+        if (game !== null) {
+            res.json(game);
+        } else {
+            res.json({});
+        }
     } catch (err) {
         res.status(400).json({message: 'Error'});
     }
